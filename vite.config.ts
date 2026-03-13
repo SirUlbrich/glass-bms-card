@@ -13,7 +13,7 @@ export default defineConfig({
       // Wir bündeln Lit mit ein, damit die Karte eigenständig läuft
       external: [], 
     },
-    outDir: '\\\\192.168.178.152\\config\\www\\eigeneCards\\glass-bms-card',
+    outDir: 'dist',
     emptyOutDir: true,
   }
 });

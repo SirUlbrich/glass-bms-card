@@ -1,12 +1,14 @@
 import { css, CSSResult } from 'lit';
 
 export const cardStyles: CSSResult = css`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  
   :host {
     display: block;
     background: transparent !important;
     --ha-card-background: transparent;
     --ha-card-box-shadow: none;
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   ha-card {
     background-color: transparent !important;
@@ -21,6 +23,7 @@ export const cardStyles: CSSResult = css`
     width: 100%;
     height: auto;
     background: transparent !important; /* Erzwingt Transparenz für das SVG-Feld */
+    font-family: 'Inter', sans-serif;
   } 
   svg text {
     font-family: 'Inter', sans-serif !important;

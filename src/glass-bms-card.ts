@@ -31,6 +31,18 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   @property({ attribute: false }) public hass!: HomeAssistant;
   @state() private config!: GlassBmsCardConfig;
 
+  constructor() {
+    super();
+    // Prüfen, ob der Font-Link schon im Hauptdokument existiert, sonst hinzufügen
+    if (!document.getElementById('google-fonts-inter')) {
+      const link = document.createElement('link');
+      link.id = 'google-fonts-inter';
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap';
+      document.head.appendChild(link);
+    }
+  }
+
   public static getConfigElement(): HTMLElement {
     return document.createElement('glass-bms-card-editor');
   }
@@ -129,7 +141,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
       <g transform="translate(${x}, ${y})" @click=${(e: Event) => this._showMoreInfo(e, entityId)} style="cursor: pointer;">
         <text x="0" y="0" text-anchor="middle">
           <tspan class="text-label ${statusClass}" style="font-size: 16px;">${displayValue}</tspan>
-          <tspan class="text-label ${statusClass}" style="font-size: 10px; dx: 3;">${isNumber ? uom : ""}</tspan>
+          <tspan class="text-label ${statusClass}" style="font-size: 10px; dx="3";">${isNumber ? uom : ""}</tspan>
         </text>
         
         <text x="0" y="15" text-anchor="middle" style="fill: rgba(255,255,255,0.5); font-size: 7px; text-transform: uppercase; letter-spacing: 0.5px;">
@@ -251,7 +263,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   private _renderFailureState(x: number, y: number, failureEntity: string): TemplateResult | typeof svg {
     return svg`
       ${failureEntity ? svg`
-        <text x="0" y="140" text-anchor="middle" class="text-label" style="font-size: 10px;">
+        <text x="${x}" y="${y}" text-anchor="middle" class="text-label warn" style="font-size: 10px;">
           ${failureEntity}
         </text>
       ` : ""}
@@ -287,7 +299,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
     
     const infoStates = [
       { id: this.config.cycles, label: "Zyklen", dec: 0, show_uom: false },
-      { id: this.config.case_temp, label: "Temp.", dec: 1, show_uom: true }
+      { id: this.config.case_temp, label: "Case", dec: 0, show_uom: true }
     ].filter(m => m.id && this.hass.states[m.id]);
 
     const socEntity = this.config.soc ? this.hass.states[this.config.soc] : null;
@@ -314,7 +326,10 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
 
     return html`
       <ha-card>
-        <svg viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+        <svg 
+          viewBox="0 0 ${svgWidth} ${svgHeight}" 
+          xmlns="http://www.w3.org/2000/svg"
+          style="font-family: 'Inter', sans-serif !important;">
           <defs>
             <filter id="bevel-filter" x="-20%" y="-20%" width="140%" height="140%">
                <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="#000" />
@@ -324,7 +339,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
 
           <g id="top-row" transform="translate(${svgWidth / 2}, 30)">
             ${this._renderTitleRow(0, 0)}
-            ${this._renderInfoStates(rightColumnXSmall + 20, 30, infoStates)}
+            ${this._renderInfoStates(125, 30, infoStates)}
           </g>
           <g id="left-column" transform="translate(${margin}, ${columStart})">
             ${leftCells.map((ent, i) => this._renderCell(0, i * 32, i, ent, 'bevel-filter', false))}
@@ -356,6 +371,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
 (window as any).customCards.push({
   type: "glass-bms-card",
   name: "Glass BMS Card",
+  author: "SirUlbrich",
   version: "1.0.0",
   preview: true,
   description: "Eine Glass-Morphism Karte für BMS Daten",
