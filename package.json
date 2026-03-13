@@ -1,0 +1,18 @@
+{
+  "name": "glass-bms-card",
+  "version": "0.0.1",
+  "description": "Glass-Morphism Karte für BMS Daten",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "watch": "vite build --watch"
+  },
+  "dependencies": {
+    "custom-card-helpers": "^1.9.0",
+    "lit": "^3.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
+  }
+}
