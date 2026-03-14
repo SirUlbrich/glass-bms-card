@@ -9,7 +9,7 @@
 Eine moderne, elegante Glass-Morphism Karte für Home Assistant zur Visualisierung von Batteriemanagementsystem (BMS) Daten. Das Design setzt auf Transparenz und Unschärfe-Effekte, um sich perfekt in moderne Dashboards einzufügen.
 
 <p align="center">
-  <img src="images/complete_card.png" alt="Glass BMS Card Preview" width="400">
+  <img src="images/complete_card.PNG" alt="Glass BMS Card Preview" width="400">
 </p>
 ---
 
