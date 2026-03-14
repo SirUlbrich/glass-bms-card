@@ -25,7 +25,7 @@ Eine moderne, elegante Glass-Morphism Karte für Home Assistant zur Visualisieru
 ---
 
 ## 🛠️Installation
-[![Open your Home Assistant instance and open a repository maintainer's page in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=SirUlbrich&repository=glass-bms-card&category=Lovelace)
+[![Open your Home Assistant instance and open a repository maintainer's page in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=SirUlbrich&repository=glass-bms-card&category=plugin)
 
 <details>
 <summary> 🔧 Option 2 – Manuelle Installation <b>über HACS</b></summary>

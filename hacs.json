@@ -1,6 +1,7 @@
 {
   "name": "Glass BMS Card",
+  "type": "plugin",
   "render_readme": true,
-  "filename": "glass-bms-card.js",
+  "filename": "dist/glass-bms-card.js",
   "license": "MIT"
 }
