@@ -786,9 +786,11 @@ let L = class extends A {
     return u`
       <g id="soc-display" transform="translate(${r}, ${t})">
         ${this.config.soc ? u`
-          <text x="0" y="0" text-anchor="middle" class="soc-value-big" style="font-size: 36px;">
-            ${i}% @click=${(g) => this._showMoreInfo(g, i)} style="cursor: pointer;"
-          </text>
+          <g @click=${(g) => this._showMoreInfo(g, this.config.soc)} style="cursor: pointer;">
+            <text x="0" y="0" text-anchor="middle" class="soc-value-big" style="font-size: 36px;">
+              ${i}%
+            </text>
+          </g>
 
           ${n ? u`
             <rect x="${h}" y="${p}" width="${c}" height="${d}" rx="${d / 2}" fill="rgba(255,255,255,0.1)" />
