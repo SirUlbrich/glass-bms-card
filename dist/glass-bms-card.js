@@ -254,7 +254,7 @@ function mt(r, t) {
   if (!X(r) || !r.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return ot !== void 0 ? ot.createHTML(t) : t;
 }
-const Ht = (r, t) => {
+const kt = (r, t) => {
   const e = r.length - 1, s = [];
   let i, n = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", o = M;
   for (let l = 0; l < e; l++) {
@@ -271,7 +271,7 @@ class z {
     let i;
     this.parts = [];
     let n = 0, o = 0;
-    const l = t.length - 1, a = this.parts, [c, d] = Ht(t, e);
+    const l = t.length - 1, a = this.parts, [c, d] = kt(t, e);
     if (this.el = z.createElement(c, s), b.currentNode = this.el.content, e === 2 || e === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
@@ -309,7 +309,7 @@ function S(r, t, e = r, s) {
   const n = T(t) ? void 0 : t._$litDirective$;
   return i?.constructor !== n && (i?._$AO?.(!1), n === void 0 ? i = void 0 : (i = new n(r), i._$AT(r, e, s)), s !== void 0 ? (e._$Co ??= [])[s] = i : e._$Cl = i), i !== void 0 && (t = S(r, i._$AS(r, t.values), i, s)), t;
 }
-class kt {
+class Ht {
   constructor(t, e) {
     this._$AV = [], this._$AN = void 0, this._$AD = t, this._$AM = e;
   }
@@ -371,7 +371,7 @@ class N {
     const { values: e, _$litType$: s } = t, i = typeof s == "number" ? this._$AC(t) : (s.el === void 0 && (s.el = z.createElement(mt(s.h, s.h[0]), this.options)), s);
     if (this._$AH?._$AD === i) this._$AH.p(e);
     else {
-      const n = new kt(i, this), o = n.u(this.options);
+      const n = new Ht(i, this), o = n.u(this.options);
       n.p(e), this.T(o), this._$AH = n;
     }
   }
@@ -787,7 +787,7 @@ let L = class extends A {
       <g id="soc-display" transform="translate(${r}, ${t})">
         ${this.config.soc ? u`
           <text x="0" y="0" text-anchor="middle" class="soc-value-big" style="font-size: 36px;">
-            ${i}%
+            ${i}% @click=${(g) => this._showMoreInfo(g, i)} style="cursor: pointer;"
           </text>
 
           ${n ? u`
@@ -797,12 +797,12 @@ let L = class extends A {
 
           ${o ? u`
             ${a.map((g, E) => {
-      const C = e >= g, H = l && !C && (E === a.length - 1 || e >= a[E + 1]), k = 40 + E * 18;
+      const C = e >= g, k = l && !C && (E === a.length - 1 || e >= a[E + 1]), H = 40 + E * 18;
       return u`
                 <circle 
-                  cx="0" cy="${k}" r="3" 
-                  fill="${C || H ? "#00d2ff" : "rgba(255,255,255,0.1)"}"
-                  class="${H ? "charging-dot" : ""}"
+                  cx="0" cy="${H}" r="3" 
+                  fill="${C || k ? "#00d2ff" : "rgba(255,255,255,0.1)"}"
+                  class="${k ? "charging-dot" : ""}"
                   style="${C ? "filter: drop-shadow(0 0 3px #00d2ff);" : ""} transition: all 0.5s ease;"
                 />`;
     })}` : ""}
@@ -878,7 +878,7 @@ let L = class extends A {
       Charge: "Laden",
       Discharge: "Entladen",
       "Standby Mode": "Standby"
-    }, g = l <= 8 ? l : Math.ceil(l / 2), E = o.slice(0, g), C = o.slice(g), H = d ? parseFloat(d.state) : 0, k = p ? p.state : "", bt = $[k] || k, xt = h ? h.state : "";
+    }, g = l <= 8 ? l : Math.ceil(l / 2), E = o.slice(0, g), C = o.slice(g), k = d ? parseFloat(d.state) : 0, H = p ? p.state : "", bt = $[H] || H, xt = h ? h.state : "";
     return j`
       <ha-card>
         <svg 
@@ -900,7 +900,7 @@ let L = class extends A {
             ${E.map((m, P) => this._renderCell(0, P * 32, P, m, "bevel-filter", !1))}
           </g>
 
-          ${this._renderSocDisplay(r / 2, i + 20, H, bt)}
+          ${this._renderSocDisplay(r / 2, i + 20, k, bt)}
 
           ${this._renderMeasurements(r / 2, i + 180, a)}
           
