@@ -1,9 +1,10 @@
 # Glass BMS Card 🔋
 
-![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Custom%20Card-orange.svg)
-![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)(https://github.com/SirUlbrich/glass-bms-card/releases)
+![License](https://img.shields.io/badge/license-MIT-green.svg)(https://github.com/SirUlbrich/glass-bms-card/blob/main/LICENSE)
+![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Custom%20Card-orange.svg)(https://www.home-assistant.io/)
+![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)(https://github.com/SirUlbrich/glass-bms-card/issues)
+[![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/SirUlbrich)
 
 
 Eine moderne, elegante Glass-Morphism Karte für Home Assistant zur Visualisierung von Batteriemanagementsystem (BMS) Daten. Das Design setzt auf Transparenz und Unschärfe-Effekte, um sich perfekt in moderne Dashboards einzufügen.
