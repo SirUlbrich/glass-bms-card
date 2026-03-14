@@ -50,10 +50,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   public static getStubConfig(): Partial<GlassBmsCardConfig> {
     return {
       title: "BMS Status",
-      entities: [],
-      soc: "sensor.soc",
-      soc_bar: true,
-      soc_dots: true
+      entities: []
     };
   }
 

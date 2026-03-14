@@ -16,22 +16,48 @@ export class GlassBmsCardEditor extends LitElement {
       { name: "title", label: "Titel der Karte", selector: { text: {} } },
       {
         name: "entities",
-        label: "Zellspannungen (Liste)",
+        label: "Zellspannungen",
         selector: { entity: { multiple: true, domain: "sensor"} }
       },
-      { name: "soc", label: "SoC", selector: { entity: {} } },
-      { name: "status", label: "Status", selector: { entity: {} } },
-      { name: "voltage", label: "Gesamtspannung", selector: { entity: {} } },
-      { name: "remaining", label: "Verbl. Leistung", selector: { entity: {} } },
-      { name: "celldiff", label: "Zellendifferenz", selector: { entity: {} } },
-      { name: "cycles", label: "Zyklen", selector: { entity: {} } },
-      { name: "temperature", label: "Temperatur", selector: { entity: {} } },
       {
         type: "grid",
         name: "",
+        title: "Haupt-Sensoren",
+        schema: [
+          { name: "soc", label: "SoC", selector: { entity: {} } },
+          { name: "voltage", label: "Gesamtspannung", selector: { entity: {} } },
+          { name: "remaining", label: "Verbl. Leistung", selector: { entity: {} } },
+          { name: "celldiff", label: "Zellendifferenz", selector: { entity: {} } }
+        ],
+      },
+      {
+        type: "grid",
+        title: "Info-Sensoren",
+        name: "",
+        schema: [
+          { name: "celldiff", label: "Zellendifferenz", selector: { entity: { domain: "sensor" } } },
+          { name: "cycles", label: "Ladezyklen", selector: { entity: { domain: "sensor" } } },
+          { name: "case_temp", label: "Case-Temperatur", selector: { entity: { domain: "sensor" } } },
+          { name: "status", label: "Status", selector: { entity: {} } },
+          { name: "failure", label: "Fehlermeldung-Sensor", selector: { entity: { domain: "sensor" } } }
+        ],
+      },
+      {
+        type: "grid",
+        title: "Anzeige-Optionen",
+        name: "",
         schema: [
           { name: "soc_bar", label: "Balken anzeigen", selector: { boolean: {} } },
-          { name: "soc_dots", label: "Punkte anzeigen", selector: { boolean: {} } },
+          { name: "soc_dots", label: "Punkte anzeigen", selector: { boolean: {} } }
+        ],
+      },
+            {
+        type: "expandable",
+        title: "Alarm-Einstellung (Zell-Differenz)",
+        schema: [
+          { name: "diff_alarm_active", label: "Alarme aktivieren", selector: { boolean: {} } },
+          { name: "diff_warn", label: "Warnschwelle (Standard 0.05)", selector: { number: { step: 0.001, mode: "box" } } },
+          { name: "diff_alarm", label: "Alarmschwelle (Standard 0.10)", selector: { number: { step: 0.001, mode: "box" } } }
         ],
       },
     ];
