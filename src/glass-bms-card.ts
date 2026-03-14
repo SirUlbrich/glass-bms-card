@@ -193,9 +193,11 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
     return svg`
       <g id="soc-display" transform="translate(${x}, ${y})">
         ${this.config.soc ? svg`
-          <text x="0" y="0" text-anchor="middle" class="soc-value-big" style="font-size: 36px;">
-            ${socValue}% @click=${(e: Event) => this._showMoreInfo(e, socValue)} style="cursor: pointer;"
-          </text>
+          <g @click=${(e: Event) => this._showMoreInfo(e, this.config.soc)} style="cursor: pointer;">
+            <text x="0" y="0" text-anchor="middle" class="soc-value-big" style="font-size: 36px;">
+              ${socValue}%
+            </text>
+          </g>
 
           ${soc_bar ? svg`
             <rect x="${barX}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="${barHeight/2}" fill="rgba(255,255,255,0.1)" />
