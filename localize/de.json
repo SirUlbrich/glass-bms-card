@@ -1,0 +1,18 @@
+{
+  "common": {
+    "voltage": "Spannung",
+    "remaining": "Restenergie",
+    "celldiff": "Zelldifferenz",
+    "cycles": "Zyklen",
+    "case": "Gehäuse",
+    "cell": "Zelle"
+  },
+  "status": {
+    "charging": "Laden",
+    "discharging": "Entladen",
+    "standby": "Standby"
+  },
+  "error": {
+    "no_entities": "Bitte definiere mindestens einen Sensor!"
+  }
+}

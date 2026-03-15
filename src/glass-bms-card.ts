@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { HomeAssistant, LovelaceCard, LovelaceCardConfig } from 'custom-card-helpers';
 import { cardStyles } from './glass-bms-card-styles';
 import './glass-bms-card-editor';
+import { localize } from '../localize/localize'
 
 interface GlassBmsCardConfig extends LovelaceCardConfig {
   title?: string;
@@ -56,8 +57,8 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
 
   public setConfig(config: GlassBmsCardConfig): void {
     if (!config.entities || config.entities.length === 0) {
-      throw new Error("Bitte definiere mindestens einen Sensor - sensor.xxx!");
-    }
+     throw new Error(localize('error.no_entities', this.hass.language));
+  }
     this.config = { ...config };
     this.requestUpdate();
   }
@@ -104,7 +105,9 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
     return svg`
       <g transform="translate(${x}, ${y})" @click=${(e: Event) => this._showMoreInfo(e, entityId)} style="cursor: pointer;">
         <rect width="80" height="20" rx="10" class="cell-box" style="filter: url(#${filterId});" />
-        <text x="${labelX}" y="13.5" class="text-label" text-anchor="${labelAnchor}">Zelle ${index + 1}</text>
+        <text x="${labelX}" y="13.5" class="text-label" text-anchor="${labelAnchor}">
+          ${localize('common.cell', this.hass.language)} ${index + 1}
+        </text>
         <text x="${valueX}" y="13.5" class="cell-value" text-anchor="${valueAnchor}">${val}<tspan dx="1" dy="-3" font-size="6">${unit}</tspan></text>
       </g>  
     `;
@@ -178,7 +181,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   private _renderSocDisplay(x: number, y: number, socNumeric: number, systemStatus: string): TemplateResult | typeof svg {
     const socValue = socNumeric.toFixed(0);
     const { soc_bar, soc_dots } = this.config;
-    const isCharging = systemStatus === "Laden";
+    const isCharging = systemStatus === "Laden" || systemStatus === "Charging";
     const thresholds: number[] = [100, 80, 60, 40, 20];
 
     const barWidth = 120;
@@ -278,6 +281,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   protected render(): TemplateResult {
     if (!this.hass || !this.config) return html``;
 
+    const lang = this.hass.language || 'en';
     const svgWidth = 400;
     const svgHeight = 350;
     const margin = 15;
@@ -291,23 +295,23 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
 
     // --- Dynamisches Grid für die Big Cells vorbereiten ---
     const activeMeasures = [
-      { id: this.config.voltage, label: "Spannung", dec: 1 },
-      { id: this.config.remaining, label: "Restenergie", dec: 1 },
-      { id: this.config.celldiff, label: "Zelldifferenz", dec: 3 }
+      { id: this.config.voltage, label: localize('common.voltage', lang), dec: 1 },
+      { id: this.config.remaining, label: localize('common.remaining', lang), dec: 1 },
+      { id: this.config.celldiff, label: localize('common.celldiff', lang), dec: 3 }
     ].filter(m => m.id && this.hass.states[m.id]);
     
     const infoStates = [
-      { id: this.config.cycles, label: "Zyklen", dec: 0, show_uom: false },
-      { id: this.config.case_temp, label: "Case", dec: 0, show_uom: true }
+      { id: this.config.cycles, label: localize('common.cycles', lang), dec: 0, show_uom: false },
+      { id: this.config.case_temp, label: localize('common.case', lang), dec: 0, show_uom: true }
     ].filter(m => m.id && this.hass.states[m.id]);
 
     const socEntity = this.config.soc ? this.hass.states[this.config.soc] : null;
     const failureEntity = this.config.failure ? this.hass.states[this.config.failure] : null;
     const statusEntity = this.config.status ? this.hass.states[this.config.status] : null;
     const statusMap: Record<string, string> = {
-      "Charge": "Laden",
-      "Discharge": "Entladen",
-      "Standby Mode": "Standby"
+      "Charge": localize('status.charging', lang),
+      "Discharge": localize('status.discharging', lang),
+      "Standby Mode": localize('status.standby', lang)
     };
 
     // Dynamische Aufteilung: Wenn 8 Zellen da sind, kommen alle links oder 4/4. 

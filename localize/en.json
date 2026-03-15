@@ -1,0 +1,18 @@
+{
+  "common": {
+    "voltage": "Voltage",
+    "remaining": "Remaining",
+    "celldiff": "Cell Diff",
+    "cycles": "Cycles",
+    "case": "Case",
+    "cell": "Cell"
+  },
+  "status": {
+    "charging": "Charging",
+    "discharging": "Discharging",
+    "standby": "Standby"
+  },
+  "error": {
+    "no_entities": "Please define at least one sensor!"
+  }
+}
