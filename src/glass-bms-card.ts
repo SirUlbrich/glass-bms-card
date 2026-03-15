@@ -375,7 +375,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   type: "glass-bms-card",
   name: "Glass BMS Card",
   author: "SirUlbrich",
-  version: "1.0.0",
+  version: "1.1.0",
   preview: true,
   description: "Eine Glass-Morphism Karte für BMS Daten",
 });

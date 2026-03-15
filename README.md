@@ -1,6 +1,6 @@
 # Glass BMS Card 🔋
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/SirUlbrich/glass-bms-card/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/SirUlbrich/glass-bms-card/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/SirUlbrich/glass-bms-card/commits/main)
 [![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/SirUlbrich)

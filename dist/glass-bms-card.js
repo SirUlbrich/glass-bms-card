@@ -994,7 +994,7 @@ window.customCards.push({
   type: "glass-bms-card",
   name: "Glass BMS Card",
   author: "SirUlbrich",
-  version: "1.0.0",
+  version: "1.1.0",
   preview: !0,
   description: "Eine Glass-Morphism Karte für BMS Daten"
 });
