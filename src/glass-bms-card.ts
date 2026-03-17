@@ -8,6 +8,7 @@ import { localize } from '../localize/localize'
 interface GlassBmsCardConfig extends LovelaceCardConfig {
   title?: string;
   entities: string[];
+  language?: string;
   soc?: string;
   status?: string;
   voltage?: string;
@@ -51,20 +52,29 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   public static getStubConfig(): Partial<GlassBmsCardConfig> {
     return {
       title: "BMS Status",
-      entities: []
+      entities: [],
+      language: "de"
     };
   }
 
   public setConfig(config: GlassBmsCardConfig): void {
     if (!config.entities || config.entities.length === 0) {
-     throw new Error(localize('error.no_entities', this.hass.language));
-  }
+     const errorLang = config.language || (this.hass ? this.hass.language : 'en');
+      throw new Error(localize('error.no_entities', errorLang));
+    }
     this.config = { ...config };
     this.requestUpdate();
   }
 
   public getCardSize(): number {
     return 1;
+  }
+
+  // Hilfs-Getter für die aktuelle Sprache
+  private get _selectedLanguage(): string {
+    // 1. Manuelle Config | 2. HA-Sprache | 3. Fallback Englisch
+    const lang = this.config.language || this.hass.language || 'en';
+    return lang.split('-')[0]; // Macht aus 'de-DE' einfach 'de'
   }
 
   private _renderTitleRow(x: number, y: number): TemplateResult | typeof svg {
@@ -281,7 +291,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   protected render(): TemplateResult {
     if (!this.hass || !this.config) return html``;
 
-    const lang = this.hass.language || 'en';
+    const lang = this._selectedLanguage;
     const svgWidth = 400;
     const svgHeight = 350;
     const margin = 15;
@@ -375,7 +385,7 @@ export class GlassBmsCard extends LitElement implements LovelaceCard {
   type: "glass-bms-card",
   name: "Glass BMS Card",
   author: "SirUlbrich",
-  version: "1.1.0",
+  version: "1.1.1",
   preview: true,
   description: "Eine Glass-Morphism Karte für BMS Daten",
 });

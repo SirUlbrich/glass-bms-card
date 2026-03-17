@@ -15,6 +15,20 @@ export class GlassBmsCardEditor extends LitElement {
     return [
       { name: "title", label: "Titel der Karte", selector: { text: {} } },
       {
+        name: "language",
+        label: "Sprache (Language)",
+        selector: {
+          select: {
+            options: [
+              { value: "", label: "Auto (System)" },
+              { value: "de", label: "Deutsch" },
+              { value: "en", label: "English" }
+            ],
+            mode: "dropdown"
+          }
+        }
+      },
+      {
         name: "entities",
         label: "Zellspannungen",
         selector: { entity: { multiple: true, domain: "sensor"} }

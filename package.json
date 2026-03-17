@@ -1,6 +1,6 @@
 {
   "name": "glass-bms-card",
-  "version": "v1.1.0",
+  "version": "v1.1.1",
   "description": "Glass-Morphism Karte für BMS Daten",
   "type": "module",
   "scripts": {
